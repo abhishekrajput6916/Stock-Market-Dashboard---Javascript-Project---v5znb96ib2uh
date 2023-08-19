@@ -22,8 +22,8 @@ const watchListArray = [];
 
 const searchBtn = document.querySelector("#search-btn");
 async function getStockData(symbol, time) {
-    const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_${time}&symbol=${symbol}&interval=5min&apikey=3CX8CDELLLNSKW4F`);
-    // const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo`);
+    // const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_${time}&symbol=${symbol}&interval=5min&apikey=3CX8CDELLLNSKW4F`);
+    const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo`);
     const result = await response.json();
     // console.log(result);
 
@@ -118,8 +118,8 @@ async function showDetails(id) {
 
     const [symbol, timeFrame] = id.split("-");
     // console.log(symbol + "---" + timeFrame);
-    const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_${timeFrame}&symbol=${symbol}&interval=5min&apikey=3CX8CDELLLNSKW4F`);
-    // const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo`);
+    // const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_${timeFrame}&symbol=${symbol}&interval=5min&apikey=3CX8CDELLLNSKW4F`);
+    const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo`);
 
     const result = await response.json();
     // console.log(Object.values(result)[1]);

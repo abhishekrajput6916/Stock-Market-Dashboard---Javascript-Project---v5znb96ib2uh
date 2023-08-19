@@ -162,6 +162,8 @@ color              code
     width: 56px;
     min-width:min-content;
     overflow: hidden;
+    padding: 8px;
+    border-radius: 20px;
 }
 .stock .stock-info .time{
     width: 80px;
@@ -196,48 +198,32 @@ color              code
     justify-content: center;
 }
 #table-head{
-    width:400px;
+    font-weight: 700;
     display: flex;
     justify-content: space-evenly;
-    align-items:center;
-    font-weight: 700;
-    /* gap: 10px; */
-    /* padding: 0 8px; */
-}
-.head-cell{
-    padding:8px 0;
-    text-align: center;
-    min-width: 56px;
-}
-#date{
-    width: 100px;
-    flex-shrink: 2;
-}
-#tbody{
-    width:400px;
-    font-weight: 700;
-    margin: 0 4px;
-    max-height: 300px;
+    align-items: center;
+    padding: 8px 12px;
+    font-size: 12px;
+    gap: 28px;
 }
 #details{
+    display: grid;
+    grid-template-columns: repeat(1fr,6);
+    grid-template-rows: auto;
+    flex-direction: column;
     overflow-y: scroll;
     max-height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items:center;
     overflow-y: scroll;
-    /* display: grid; */
-}
-.head-cell{
-    width: 50px;
+    padding: 12px 16px;
 }
 
-.data-cell{
-    /* min-width: 56px; */
-    width: 50px;
-    display: inline;
-    margin-top:4px ;
+.table-row{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 4px 12px;
+    font-size: 12px;
+    gap: 12px;
 }
 
 .hide{
