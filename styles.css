@@ -215,21 +215,23 @@ color              code
 }
 #tbody{
     width:400px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items:center;
     font-weight: 700;
     margin: 0 4px;
     max-height: 300px;
-    overflow-y: scroll;
 }
 #details{
     overflow-y: scroll;
     max-height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
+    overflow-y: scroll;
+    /* display: grid; */
 }
 .head-cell{
     width: 50px;
 }
+
 .data-cell{
     /* min-width: 56px; */
     width: 50px;

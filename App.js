@@ -71,6 +71,7 @@ function addToWatchList(sym = "Sample", price = 100.00, time = "SAMPLE") {
     const stockPrice = document.createElement("div");
     stockPrice.classList.add("price","info-item");
     stockPrice.innerText = price;
+    setColor(stockPrice,price);
 
     const stockTime = document.createElement("div");
     stockTime.classList.add("time","info-item")
@@ -145,4 +146,15 @@ function populateDetailsSection(date, obj) {
         tableRow.appendChild(cell);
     }
     document.querySelector("#details").appendChild(tableRow);    
+}
+
+
+function setColor(node,num){
+    if(num<60){
+        node.style.color="red";
+    }else if(num>=60 && num<=100){
+        node.style.color="aliceblue";
+    }else{
+        node.style.color="greenyellow";
+    }
 }
