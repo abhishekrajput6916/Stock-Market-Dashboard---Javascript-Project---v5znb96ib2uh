@@ -141,23 +141,36 @@ color              code
     display: flex;
     background-color:#F2ECFF;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 16px;
     padding: 8px;
     font-weight: 700;
     border-radius: 20px;
 }
-.stock .symbol{
+.stock-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 8px;
+}
+.stock .stock-info .symbol{
+    min-width:min-content;
     width: 56px;
     overflow: hidden;
 }
-.stock .prce{
+.stock .stock-info .price{
     width: 56px;
+    min-width:min-content;
+    overflow: hidden;
+}
+.stock .stock-info .time{
+    width: 80px;
     overflow: hidden;
 
 }
-.stock .time{
-    width: 68px;
-    overflow: hidden;
+.info-item{
+    margin: 8px;
+    /* width: 25%; */
 }
 .stock .delete-btn{
     font-size: 20px;
