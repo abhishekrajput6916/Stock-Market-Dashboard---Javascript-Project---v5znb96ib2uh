@@ -115,7 +115,6 @@ async function showDetails(id) {
     const stockTitle=document.querySelector("#stock-title")
     stockTitle.innerText=id;
 
-
     const [symbol, timeFrame] = id.split("-");
     // console.log(symbol + "---" + timeFrame);
     const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_${timeFrame}&symbol=${symbol}&interval=5min&apikey=3CX8CDELLLNSKW4F`);
