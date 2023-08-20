@@ -229,3 +229,8 @@ color              code
 .hide{
     display: none;
 }
+
+#stocks .selected{
+    background-color: #009154;
+}
+

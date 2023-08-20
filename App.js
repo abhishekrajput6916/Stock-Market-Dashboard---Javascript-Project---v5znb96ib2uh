@@ -30,25 +30,27 @@ async function getStockData(symbol, time) {
     return result;
 }
 
-
-
 searchBtn.addEventListener("click", () => {
+    init();
     const searchInput = document.querySelector("#search-input").value;
-    console.log("input: " + searchInput);
+    // console.log("input: " + searchInput);
 
     const timeFrame = document.querySelector('input[type="radio"]:checked').value;
-    console.log("time: " + timeFrame);
+    // console.log("time: " + timeFrame);
 
     const stock = getStockData(searchInput, timeFrame); //add some parameters
     stock.then((stock) => {
+        console.log(stock);
+        if(!watchListArray.includes(stock)){
+            watchListArray.push(stock);
+            // watchListArray.push({ stock: stock, symbol: stock["Meta Data"]["2. Symbol"].toUpperCase(), timeFrame: timeFrame });
+            console.log(watchListArray);
+    
+            const price = Object.values(Object.values(stock)[1])[0]["1. open"];
+            // console.log(price + " price");
 
-        // watchListArray.push({ stock: stock, symbol: stock["Meta Data"]["2. Symbol"].toUpperCase(), timeFrame: timeFrame });
-        // console.log(watchListArray);
-
-        const price = Object.values(Object.values(stock)[1])[0]["1. open"];
-        console.log(price + " price");
-
-        addToWatchList(stock["Meta Data"]["2. Symbol"].toUpperCase(), price, timeFrame)
+            addToWatchList(stock["Meta Data"]["2. Symbol"].toUpperCase(), price, timeFrame)
+        }
 
     }).catch(reject => alert("Record Not Found !"));
 
@@ -96,15 +98,47 @@ function addToWatchList(sym = "Sample", price = 100.00, time = "SAMPLE") {
 }
 
 function handleDltStock(e) {
-    // watchListArray.remove(e.currentTarget.parentNode);
+    // watchListArray.map((stock)=>{
+    //     if(stock["Meta Data"]["2. Symbol"]===e.parentNode.id.split("-")[0]){
+    //         watchListArray.remove(stock);
+    //     }
+    // })
+    // e.stopPropogation();
+    if(e.currentTarget.parentNode.classList.contains("selected")){
+        console.log(e.currentTarget);
+        showSiblings(e.currentTarget.parentNode);
+    }
+    //do not change the sequence
     e.currentTarget.parentNode.parentNode.removeChild(e.currentTarget.parentNode)
     console.log("Stock deleted");
     const modal = document.querySelector("#stock-info");
     modal.classList.add("hide");
+    const details = document.querySelector("#details");
+    details.innerText="";    
+}
+
+function showSiblings(node){
+    const siblings=Array.from(node.parentNode.children).filter(ele=>{return ele !== node});
+    console.dir(siblings);
+    siblings.map(ele=>ele.classList.remove("hide"));
 }
 function handleStockClick(e) {
     console.log(e.currentTarget.parentNode.id);
+    e.currentTarget.parentNode.classList.toggle("selected");
+    // e.currentTarget.parentNode.siblings.classList.add("hide");
+    hideAllSiblings(e.currentTarget.parentNode);
     showDetails(e.currentTarget.parentNode.id);
+}
+function hideAllSiblings(node){
+    const allSiblings=Array.from(node.parentNode.children).filter(ele=>{return ele !== node});
+    allSiblings.map(ele=>ele.classList.toggle("hide"));
+    // let sibling=node.parentNode.firstChild;
+    // while(sibling){
+    //     if(sibling.nodeType===1 && sibling !== node){
+    //         sibling.classList.toggle("hide");
+    //     }
+    //     sibling=sibling.nextSibling;
+    // }
 }
 
 // showDetails("IBM-INTRADAY");
@@ -160,3 +194,13 @@ function setColor(node,num){
         node.style.backgroundColor="greenyellow";
     }
 }
+function init(){
+    const modal = document.querySelector("#stock-info");
+    modal.classList.add("hide");
+    const allSocks=Array.from(document.querySelectorAll(".stock"));
+    allSocks.map((node)=>{
+        node.classList.remove("hide","selected");
+        // node.classList.remove("");
+    })
+}
+init();
